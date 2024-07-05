@@ -102,34 +102,3 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
         user=username,
         password=psw)
     return conn
-
-
-def main() -> None:
-    """
-    In this task, you will connect to a secure holberton database to read a
-    users table. The database is protected by a username and password that are
-    set as environment variables on the server named PERSONAL_DATA_DB_USERNAME
-    (set the default as “root”), PERSONAL_DATA_DB_PASSWORD
-    (set the default as an empty string) and PERSONAL_DATA_DB_HOST (set the
-    default as “localhost”).
-    * The database name is stored in PERSONAL_DATA_DB_NAME.
-    * Implement a get_db function that returns a connector to the database
-    (mysql.connector.connection.MySQLConnection object).
-        * Use the os module to obtain credentials from the environment
-        * Use the module mysql-connector-python to connect to the MySQL
-        database (pip3 install mysql-connector-python)
-    """
-    db = get_db()
-    cursor = db.cursor()
-    cursor.execute("SELECT * FROM users;")
-    for row in cursor:
-        message = f"name={row[0]}; email={row[1]}; phone={row[2]}; " +\
-            f"ssn={row[3]}; password={row[4]};ip={row[5]}; " +\
-            f"last_login={row[6]}; user_agent={row[7]};"
-        print(message)
-    cursor.close()
-    db.close()
-
-
-if __name__ == '__main__':
-    main()
