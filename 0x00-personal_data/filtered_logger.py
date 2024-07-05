@@ -102,3 +102,32 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
         user=username,
         password=psw)
     return conn
+
+
+def main() -> None:
+    """
+    * Implement a main function that takes no arguments and returns nothing.
+    The function will obtain a database connection using get_db and retrieve
+    all rows in the users table and display each row under a filtered format.
+    * Filtered fields:
+        - name
+        - email
+        - phone
+        - ssn
+        - password
+    * Only your main function should run when the module is executed.
+    """
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM users;")
+    for row in cursor:
+        message = f"name={row[0]}; email={row[1]}; phone={row[2]}; " +\
+            f"ssn={row[3]}; password={row[4]};ip={row[5]}; " +\
+            f"last_login={row[6]}; user_agent={row[7]};"
+        print(message)
+    cursor.close()
+    db.close()
+
+
+if __name__ == '__main__':
+    main()
