@@ -5,7 +5,6 @@ import re
 import base64
 import binascii
 from typing import Tuple, TypeVar
-
 from .auth import Auth
 from models.user import User
 
@@ -61,4 +60,19 @@ class BasicAuth(Auth):
                 return None
             if users[0].is_valid_password(user_pwd):
                 return users[0]
+        return None
+
+    def current_user(self, request=None) -> User:
+        """
+        Retrieves the User instance for a given request.
+        """
+        if request is None:
+            return None
+        auth_header = self.authorization_header(request)
+        if auth_header:
+            base64_value = self.extract_base64_authorization_header(auth_header)  # noqa
+            decoded_value = self.decode_base64_authorization_header(base64_value)  # noqa
+            email, password = self.extract_user_credentials(decoded_value)
+            if email and password:
+                return self.user_object_from_credentials(email, password)
         return None
