@@ -40,7 +40,7 @@ class BasicAuth(Auth):
         Extracts the user email and password from the Base64-decoded
         authorization header.
         """
-        if decoded_base64_authorization_header is None or not isinstance(decoded_base64_authorization_header, str):
+        if decoded_base64_authorization_header is None or not isinstance(decoded_base64_authorization_header, str):  # noqa
             return None, None
         if ':' in decoded_base64_authorization_header:
             email, password = decoded_base64_authorization_header.split(':', 1)
