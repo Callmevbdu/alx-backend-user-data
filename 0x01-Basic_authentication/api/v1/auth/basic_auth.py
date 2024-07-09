@@ -48,7 +48,7 @@ class BasicAuth(Auth):
             return email, password
         return None, None
 
-    def user_object_from_credentials(self, user_email: str, user_pwd: str) -> User:
+    def user_object_from_credentials(self, user_email: str, user_pwd: str) -> User:  # noqa
         """
         Retrieves the User instance based on email and password.
         """
