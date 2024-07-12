@@ -54,3 +54,24 @@ def session_login() -> Tuple[str, int]:
         res.set_cookie(os.getenv("SESSION_NAME"), sessiond_id)
         return res
     return jsonify({"error": "wrong password"}), 401
+
+
+@app_views.route(
+    '/auth_session/logout', methods=['DELETE'], strict_slashes=False)
+def session_logout() -> Tuple[str, int]:
+    """
+    Update the file api/v1/views/session_auth.py, by adding a new route DELETE
+    /api/v1/auth_session/logout:
+        - Slash tolerant
+        - You must use from api.v1.app import auth
+        - You must use auth.destroy_session(request) for deleting the Session
+        ID contains in the request as cookie:
+            * If destroy_session returns False, abort(404)
+            * Otherwise, return an empty JSON dictionary with the status
+            code 200
+    """
+    from api.v1.app import auth
+    is_destroyed = auth.destroy_session(request)
+    if not is_destroyed:
+        abort(404)
+    return jsonify({})
