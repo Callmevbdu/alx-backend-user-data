@@ -6,6 +6,7 @@ from .auth import Auth
 
 
 class SessionAuth(Auth):
-    """                                                                                                                     A class SessionAuth that inherits from Auth.
+    """
+    A class SessionAuth that inherits from Auth.
     """
     pass
