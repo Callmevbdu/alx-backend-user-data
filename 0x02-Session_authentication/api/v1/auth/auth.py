@@ -5,6 +5,7 @@ Auth.py file.
 import re
 from flask import request
 from typing import List, TypeVar
+from os import getenv
 
 
 class Auth:
@@ -51,3 +52,12 @@ class Auth:
         Placeholder method for retrieving the current authenticated user.
         """
         return None
+    
+    def session_cookie(self, request=None):
+        """
+        Retrieves the value of the session cookie from a request.
+        """
+        if request is None:
+            return None
+        session_name = getenv("SESSION_NAME", "_my_session_id")
+        return request.cookies.get(session_name)
