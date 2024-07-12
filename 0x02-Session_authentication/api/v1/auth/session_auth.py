@@ -10,12 +10,7 @@ class SessionAuth(Auth):
     """
     A class SessionAuth that inherits from Auth.
     """
-    def __init__(self):
-        """
-        init function
-        """
-        super().__init__()
-        self.user_id_by_session_id = {}
+    user_id_by_session_id = {}
 
     def create_session(self, user_id: str = None) -> str:
         """
