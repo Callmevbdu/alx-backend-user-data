@@ -5,6 +5,7 @@ Session Authentication
 from .auth import Auth
 import uuid
 from models.user import User
+from uuid import uuid4
 
 
 class SessionAuth(Auth):
