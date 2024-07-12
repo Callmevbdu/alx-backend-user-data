@@ -52,7 +52,7 @@ class Auth:
         Placeholder method for retrieving the current authenticated user.
         """
         return None
-    
+
     def session_cookie(self, request=None):
         """
         Retrieves the value of the session cookie from a request.
