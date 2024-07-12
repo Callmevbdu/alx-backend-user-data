@@ -8,6 +8,7 @@ from typing import Tuple
 from models.user import User
 import os
 
+
 @app_views.route('/auth_session/login', methods=['POST'], strict_slashes=False)
 def session_login() -> Tuple[str, int]:
     """
