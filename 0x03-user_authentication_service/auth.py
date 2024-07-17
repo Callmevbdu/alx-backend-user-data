@@ -21,6 +21,14 @@ def _hash_password(password: str) -> bytes:
     return hashed_bytes
 
 
+def _generate_uuid() -> str:
+    """
+    Implement a _generate_uuid function in the auth module. The function should
+    return a string representation of a new UUID. Use the uuid module.
+    """
+    return str(uuid4())
+
+
 class Auth:
     """Auth class to interact with the authentication database."""
     def __init__(self):
