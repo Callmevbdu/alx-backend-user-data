@@ -33,11 +33,9 @@ class DB:
 
     def add_user(self, email: str, hashed_password: str) -> User:
         """
-        - Note that DB._session is a private property and hence should NEVER
-        be used from outside the DB class.
         - Implement the add_user method, which has two required string
-        arguments: email and hashed_password, and returns a User object. The
-        method should save the user to the database. No validations are
+        arguments: email and hashed_password, and returns a User object.
+        - The method should save the user to the database. No validations are
         required at this stage.
         """
         try:
