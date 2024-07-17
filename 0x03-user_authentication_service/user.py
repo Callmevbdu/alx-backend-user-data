@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
-user.py file.
+user.py module file.
 """
-from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
 
-db = SQLAlchemy()
+Base = declarative_base()
 
-
-class User(db.Model):
+class User(Base):
     """
     A SQLAlchemy model named User for a database table named users:
     The model will have the following attributes:
@@ -18,8 +18,8 @@ class User(db.Model):
         - reset_token, a nullable string
     """
     __tablename__ = 'users'
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(250), nullable=False, unique=True)
-    hashed_password = db.Column(db.String(250), nullable=False)
-    session_id = db.Column(db.String(250), nullable=True)
-    reset_token = db.Column(db.String(250), nullable=True)
+    id = Column(Integer, primary_key=True)
+    email = Column(String(250), nullable=False, unique=True)
+    hashed_password = Column(String(250), nullable=False)
+    session_id = Column(String(250), nullable=True)
+    reset_token = Column(String(250), nullable=True)
