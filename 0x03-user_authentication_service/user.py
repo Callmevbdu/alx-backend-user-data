@@ -23,6 +23,3 @@ class User(db.Model):
     hashed_password = db.Column(db.String(250), nullable=False)
     session_id = db.Column(db.String(250), nullable=True)
     reset_token = db.Column(db.String(250), nullable=True)
-
-    def __repr__(self):
-        return f'<User {self.email}>'
