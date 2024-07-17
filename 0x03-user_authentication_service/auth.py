@@ -77,9 +77,13 @@ class Auth:
         a new UUID and store it in the database as the user’s session_id,
         then return the session ID.
         """
-        user_data = self._db.get(email)
-        if not user_data:
+        user = None
+        try:
+            user = self._db.find_user_by(email=email)
+        except NoResultFound:
             return None
-        session_id = str(uuid.uuid4())
-        user_data['session_id'] = session_id
+        if user is None:
+            return None
+        session_id = _generate_uuid()
+        self._db.update_user(user.id, session_id=session_id)
         return session_id
