@@ -2,7 +2,7 @@
 """
 Setting up a basic Flask app.
 """
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, abort, redirect
 from auth import Auth
 
 AUTH = Auth()
@@ -42,8 +42,8 @@ def register_user():
         return jsonify({"message": "email already registered"}), 400
 
 
-@app.route("/sessions", methods=["POST"], strict_slashes=False)
-def login() -> str:
+@app.route("/sessions", methods=["POST"])
+def login():
     """
     - Implement a login function to respond to the POST /sessions route.
     - The request is expected to contain form data with "email" and a
