@@ -87,3 +87,20 @@ class Auth:
         session_id = _generate_uuid()
         self._db.update_user(user.id, session_id=session_id)
         return session_id
+
+    def get_user_from_session_id(self, session_id: str) -> Union[User, None]:
+        """
+        - Implement the Auth.get_user_from_session_id method. It takes a single
+        session_id string argument and returns the corresponding User or None.
+        - If the session ID is None or no user is found, return None. Otherwise
+        return the corresponding user.
+        - Remember to only use public methods of self._db.
+        """
+        user = None
+        if session_id is None:
+            return None
+        try:
+            user = self._db.find_user_by(session_id=session_id)
+        except NoResultFound:
+            return None
+        return user
