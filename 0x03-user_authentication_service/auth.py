@@ -105,7 +105,7 @@ class Auth:
             return None
         return user
 
-     def destroy_session(self, user_id: int) -> None:
+    def destroy_session(self, user_id: int) -> None:
         """
         - Implement Auth.destroy_session. The method takes a single user_id
         integer argument and returns None.
