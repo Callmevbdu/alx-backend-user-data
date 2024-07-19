@@ -43,7 +43,7 @@ def register_user():
 
 
 @app.route("/sessions", methods=["POST"], strict_slashes=False)
-def login_user() -> str:
+def login() -> str:
     """
     - Implement a login function to respond to the POST /sessions route.
     - The request is expected to contain form data with "email" and a
